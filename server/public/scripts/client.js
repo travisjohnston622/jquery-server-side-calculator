@@ -3,7 +3,7 @@ $(document).ready(onClick);
 function onClick() {
     console.log('burple');
     $('.js-add').on('click', addition);
-    $('.js-subtract').on('click', subtract);
+    $('.js-subtract').on('click', subtraction);
     $('.js-multiply').on('click', multiply);
     $('.js-divide').on('click', divide);
     $('.js-clear').on('click', clear);
@@ -14,18 +14,22 @@ let operation;
 //creating event handlers
 function addition(event) {
     operation = 'add';
+    console.log('in addition', addition)
 };
 
-function subtract(event) {
+function subtraction(event) {
     operation = 'subtract';
+    console.log('in subtraction', subtraction)
 };
 
 function multiply(event) {
     operation = 'multiply';
+    console.log('in multiplication', multiply)
 };
 
 function divide(event) {
     operation = 'divide'
+    console.log('in division', divide)
 };
 
 function clear(event) {
@@ -39,6 +43,7 @@ function equals(event) {
         equationOperation: operation,
         equationInput2: $('.js-value2').val(),
     };
+    console.log('equals', equals)
     saveEquation(equationObject);
 };
 // creating calls
@@ -51,6 +56,7 @@ function saveEquation(equationObject) {
     .then(function(response) {
         renderAnswer(response);
         history();
+        console.log('in saveEquations', saveEquation)
     })
     .catch(function(err) {
         console.log('in err:', err);
@@ -66,7 +72,8 @@ function history() {
 };
 //creating render
 function renderAnswer(response) {
-    const answer = $('.js-equals')
+    const answer = $('.js-answer')
     answer.empty();
-    answer.append('${response.answer}')
+    answer.append(`${response.answer}`);
+    console.log(response)
 };

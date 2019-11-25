@@ -14,19 +14,19 @@ app.post('/api/answer', (req, res) => {
     const operation = req.body.operation;
     let answer;
     
-    if(operation == 'add') {
+    if(operation === 'add') {
         answer = value1 + value2;
     }
-    else if (operation == 'subtract') {
+    else if (operation === 'subtract') {
         answer = value1 - value2;
     }
-    else if (operation == 'multiply') {
+    else if (operation === 'multiply') {
         answer = value1 * value2;
     }
-    else if (operation == 'divide') {
+    else if (operation === 'divide') {
         answer = value1 / value2;
     }
-    const equationOPbject = {value1, value2, operation, answer};
+    const equationObject = {value1, value2, operation, answer};
 
     addEquation(equationObject);
 
