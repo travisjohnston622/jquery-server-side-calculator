@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
-let history = [];
+let savedHistory = [];
 
 app.use(express.static('server/public'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -16,31 +16,30 @@ app.post('/api/answer', (req, res) => {
     
     if(operation == 'add') {
         answer = value1 + value2;
-        res.send({answer:answer});
     }
     else if (operation == 'subtract') {
         answer = value1 - value2;
-        res.send({answer:answer})
     }
     else if (operation == 'multiply') {
         answer = value1 * value2;
-        res.send({ answer: answer })
     }
     else if (operation == 'divide') {
         answer = value1 / value2;
-        res.send({ answer: answer })
     }
-    const equationInputs = {value1, value2, operation, answer};
-    addEquation(equationInputs);
-    return;
+    const equationOPbject = {value1, value2, operation, answer};
+
+    addEquation(equationObject);
+
+    res.send({ Answer: answer });
+    
 });
 
-function addEquation (equationInputs) {
-    history.push(equationInputs);
+function addEquation(equationObject) {
+    savedHistory.push(equationObject);
 };
 
-app.get('api/history', (req, res) => {
-    res.send(history)
+app.get('/api/history', (req, res) => {
+    res.send(savedHistory)
 });
 
 
