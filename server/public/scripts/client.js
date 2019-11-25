@@ -10,8 +10,21 @@ function onClick() {
     $('.js-equals').on('click', equals);
 };
 
-let operation;
-//creating event handlers
+let operation = {
+    add: '+',
+    '+': 'add',
+    subtract: '-',
+    '-': 'subtract',
+    multiply: '*',
+    '*': 'multiply',
+    divide: '/',
+    '/': 'divide'
+}
+
+
+
+
+    //creating event handlers
 function addition(event) {
     operation = 'add';
     console.log('in addition', addition)
@@ -72,7 +85,7 @@ function history() {
 };
 //creating render
 function renderAnswer(response) {
-    const answer = $('.js-answer')
+    const answer = ('$.js-answer')
     answer.empty();
     answer.append(`${response.answer}`);
     console.log(response)
